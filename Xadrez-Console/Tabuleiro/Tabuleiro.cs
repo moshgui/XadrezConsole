@@ -23,5 +23,11 @@ namespace Xadrez_Console.tabuleiro
             //matriz de Peca recebe os parametros do construtor Tabuleiro
             pecas = new Peca[Linhas, Colunas];
         }
+
+        //como a matriz para acessar as peças é private, é necesário um método para que ela possa ser acessada e modificada
+        public Peca peca(int linhas, int colunas)
+        {
+            return pecas[linhas, colunas];
+        }
     }
 }
