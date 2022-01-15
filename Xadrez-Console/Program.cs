@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Tabuleiro;
 namespace Xadrez_Console
 {
     internal class Program
