@@ -16,9 +16,13 @@ namespace Xadrez_Console.tabuleiro
         public int QtdeMovimentos { get; protected set; }
         public Tabuleiro Tabuleiro { get; protected set; }
 
-        public Peca(Posicao posicao, CorPeca corPeca, Tabuleiro tabuleiro)
+        //posicao de uma peca comeca como 'null' pois nao existe movimento para ela
+        //a mesma regra vale para QtdeMovimentos
+        public Peca(CorPeca corPeca, Tabuleiro tabuleiro)
         {
-            Posicao = posicao;
+            Posicao = null;
+            Tabuleiro = tabuleiro;
+            QtdeMovimentos = 0;
             CorPeca = corPeca;
             
             //quantidade de movimentos iniciazado com zero, pois a peça ainda não possui movimentos 

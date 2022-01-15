@@ -15,19 +15,28 @@ namespace Xadrez_Console.tabuleiro
         //matriz de Peca
         private Peca[,] pecas;
 
+        //construtor Tabuleiro
         public Tabuleiro(int linhas, int colunas)
         {
             Linhas = linhas;
             Colunas = colunas;
 
-            //matriz de Peca recebe os parametros do construtor Tabuleiro
+            //matriz de 'Peca' recebe os parametros do construtor Tabuleiro
             pecas = new Peca[Linhas, Colunas];
         }
 
-        //como a matriz para acessar as peças é private, é necesário um método para que ela possa ser acessada e modificada
+        //como a matriz para acessar as peças é 'private', é necesário um método para que ela possa ser acessada e modificada
         public Peca peca(int linhas, int colunas)
         {
             return pecas[linhas, colunas];
+        }
+
+        //método fará com que objeto 'p' nao posicao 'pos' ocupe uma Posicao (classe) que contem linha e coluna
+        //a classe Posicao.cs recebe uma nova posicao chamada 'pos'
+        public void ColocarPeca(Peca p, Posicao pos)
+        {
+            pecas[pos.Linha, pos.Coluna] = p;
+            p.Posicao = pos;
         }
     }
 }
