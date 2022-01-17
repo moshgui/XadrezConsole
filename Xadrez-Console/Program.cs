@@ -12,7 +12,7 @@ namespace Xadrez_Console
             {
                 Tabuleiro tab = new Tabuleiro(8, 8);
 
-                tab.ColocarPeca(new Rei(CorPeca.Preta, tab), new Posicao(0, 9));                
+                              
                
                 Tela.ImprimirTabuleiro(tab);
             }
@@ -21,6 +21,10 @@ namespace Xadrez_Console
             {
                 Console.WriteLine(e.Message);
             }
+
+            PosicaoXadrez pos = new PosicaoXadrez('C', 7);
+            Console.WriteLine(pos);
+            Console.WriteLine(pos.ConvertePosicao());
 
             Console.ReadLine();
         }
