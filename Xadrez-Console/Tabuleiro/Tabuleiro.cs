@@ -31,12 +31,56 @@ namespace Xadrez_Console.tabuleiro
             return pecas[linhas, colunas];
         }
 
+        //melhoria de sobrecarga no construtor de uma peça
+        //método recebe uma Posicao de pos de Posicao.cs
+        //antes de receber uma posicao, há a validação se existe uma peça na posicao informa atravé do ExistePeca()
+        public Peca peca(Posicao pos)
+        { 
+            return pecas[pos.Linha, pos.Coluna];
+        }
+
+        //método que verifica se existe uma peça na posicao que foi informada
+        //mas antes verifica se a posicao que foi informada é válida
+        //caso não tenha peca, retorna verdadeiro
+        public bool ExistePeca(Posicao pos)
+        {
+            ValidarPosicao(pos); ;
+            return peca(pos) != null;
+        }
+
         //método fará com que objeto 'p' nao posicao 'pos' ocupe uma Posicao (classe) que contem linha e coluna
         //a classe Posicao.cs recebe uma nova posicao chamada 'pos'
         public void ColocarPeca(Peca p, Posicao pos)
         {
+            if (ExistePeca(pos))
+            {
+                throw new TabuleiroException("Já existe uma peça nesta posição!");
+            }
             pecas[pos.Linha, pos.Coluna] = p;
             p.Posicao = pos;
+        }
+
+        //método que irá validar se a posicao que a peça será colocada é válida
+        //pos.Linha de Posicao.cs
+        //Linhas de Tabuleiro.cs
+        public bool PosicaoValida(Posicao pos)
+        {
+            if (pos.Linha < 0 || pos.Linha >= Linhas || pos.Coluna < 0 || pos.Coluna >= Colunas)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        //caso a posição não seja válida, este método irá lançar uma exceção personalizada
+        public void ValidarPosicao(Posicao pos)
+        {
+            //se a posicao 'pos' no método PosicaoValida() não for válida, é lançada uma exceção
+            if (!PosicaoValida(pos))
+            {
+                throw new TabuleiroException("Posicão inválida!");
+            }
         }
     }
 }
