@@ -28,6 +28,11 @@ namespace Xadrez_Console.tabuleiro
             //quantidade de movimentos iniciazado com zero, pois a peça ainda não possui movimentos 
             QtdeMovimentos = 0;
             Tabuleiro = tabuleiro;
-        }       
+        }    
+        
+        public void Movimento()
+        {
+            QtdeMovimentos++;
+        }
     }
 }

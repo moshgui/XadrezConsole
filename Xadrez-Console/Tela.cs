@@ -1,4 +1,5 @@
 ﻿using System;
+using Xadrez_Console.Xadrez;
 using Xadrez_Console.tabuleiro;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,14 @@ namespace Xadrez_Console
             }
 
             Console.WriteLine("  A B C D E F G H");
+        }
+
+        public static PosicaoXadrez LerPosicao()
+        {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1] + "");
+            return new PosicaoXadrez(coluna, linha);
         }
 
         //método que diferencia a cor das pecas

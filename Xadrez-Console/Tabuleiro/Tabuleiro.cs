@@ -60,6 +60,21 @@ namespace Xadrez_Console.tabuleiro
             p.Posicao = pos;
         }
 
+        //metodo que remove peca
+        //remove a peca e marca a posicao do tabuleiro como null
+        public Peca RemoverPeca(Posicao pos)
+        {
+            if (peca(pos) == null)
+            {
+                return null;
+            }
+
+            Peca aux = peca(pos);
+            aux.Posicao = null;
+            pecas[pos.Linha, pos.Coluna] = null;
+            return aux;
+        }
+
         //método que irá validar se a posicao que a peça será colocada é válida
         //pos.Linha de Posicao.cs
         //Linhas de Tabuleiro.cs
