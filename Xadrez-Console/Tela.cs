@@ -14,6 +14,9 @@ namespace Xadrez_Console
         {
             for (int i = 0; i < tab.Linhas; i++)
             {
+                //inserindo os índices das linhas do xadrez
+                Console.Write(8 - i + " ");
+               
                 for (int j = 0; j < tab.Colunas; j++)
                 {
                     //se a posicao i, j do tabuleiro estiver vazia, o método escreve apenas um traco
@@ -24,11 +27,32 @@ namespace Xadrez_Console
                     //caso a posicao i, j esteja preenchida, o metodo escreve a peca e as posicoes vazias
                     else
                     {
-                        Console.Write(tab.peca(i, j) + " ");
+                        ImprimirCorPeca(tab.peca(i, j));
+                        Console.Write(" ");
                     }
                 }
 
                 Console.WriteLine();
+            }
+
+            Console.WriteLine("  A B C D E F G H");
+        }
+
+        //método que diferencia a cor das pecas
+        public static void ImprimirCorPeca(Peca peca)
+        {
+            //se a cor da peca for branco, imprime normalmente
+            if (peca.CorPeca == CorPeca.Branco)
+            {
+                Console.Write(peca);
+            }
+            //se nao for, imprime em amarelo
+            else
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(peca);
+                Console.ForegroundColor = aux;
             }
         }
     }
