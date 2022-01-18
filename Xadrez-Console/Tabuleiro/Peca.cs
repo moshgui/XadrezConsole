@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xadrez_Console.tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
         public Posicao Posicao { get; set; }
 
@@ -27,12 +27,19 @@ namespace Xadrez_Console.tabuleiro
             
             //quantidade de movimentos iniciazado com zero, pois a peça ainda não possui movimentos 
             QtdeMovimentos = 0;
-            Tabuleiro = tabuleiro;
+            
         }    
         
+        //a cada movimento de uma peça, esse método faz com que seja incrementando mais um movimento
+        //como a QtdeMovimentos é instanciada com zero, nenhuma peca tem movimento registrado
         public void Movimento()
         {
             QtdeMovimentos++;
         }
+        
+        //método abstrato pois não existem movimentos definidos para peca que nao sabemos qual é
+        //método genérico
+        //deve ser implementado nas classes de pecas
+        public abstract bool [,] MovimentosPossíveis();
     }
 }

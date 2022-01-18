@@ -11,34 +11,63 @@ namespace Xadrez_Console
     class Tela
     {
         //classe que tem como funcão apenas mostrar o tabuleiro na tela
+        //tabuleiro se trata de uma matriz definida pela classe PartidaXadrez.cs
         public static void ImprimirTabuleiro(Tabuleiro tab)
         {
             for (int i = 0; i < tab.Linhas; i++)
             {
                 //inserindo os índices das linhas do xadrez
                 Console.Write(8 - i + " ");
-               
+
                 for (int j = 0; j < tab.Colunas; j++)
                 {
-                    //se a posicao i, j do tabuleiro estiver vazia, o método escreve apenas um traco
-                    if (tab.peca(i,j) == null)
-                    {
-                        Console.Write("- ");
-                    }
-                    //caso a posicao i, j esteja preenchida, o metodo escreve a peca e as posicoes vazias
-                    else
-                    {
-                        ImprimirCorPeca(tab.peca(i, j));
-                        Console.Write(" ");
-                    }
+                    ImprimirCorPeca(tab.peca(i, j));
                 }
-
+                //cw que quebra a linha no fim da matriz
                 Console.WriteLine();
             }
-
+            //todas as colunas de uma partida de xadrez
             Console.WriteLine("  A B C D E F G H");
         }
 
+        //sobrecarga do método para receber uma matriz de bool
+        //para mostrar quais as casas possiveis para movimento
+        public static void ImprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis)
+        {
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+
+            for (int i = 0; i < tab.Linhas; i++)
+            {
+                //inserindo os índices das linhas do xadrez
+                Console.Write(8 - i + " ");
+
+                for (int j = 0; j < tab.Colunas; j++)
+                {
+                    //se a posicao em i, j for vazia, muda para cor DarkGray
+                    if (posicoesPossiveis[i, j] == true)
+                    {
+                        Console.BackgroundColor = fundoAlterado;
+                    }
+                    //caso contrario, mantem a cor original
+                    else
+                    {
+                        Console.BackgroundColor = fundoOriginal;
+                    }
+                    ImprimirCorPeca(tab.peca(i, j));
+                    Console.BackgroundColor = fundoOriginal;
+                }
+                //cw que quebra a linha no fim da matriz
+                Console.WriteLine();
+            }
+            //todas as colunas de uma partida de xadrez
+            Console.WriteLine("  A B C D E F G H");
+            Console.BackgroundColor = fundoOriginal;    
+        }
+
+        //método que pergunta pra qual posicao deseja movimentar uma peca
+        //a string 's' captura a entrada pelo usuário, ex C2
+        //faz um split na variavel de linha e instancia uma nova posicao
         public static PosicaoXadrez LerPosicao()
         {
             string s = Console.ReadLine();
@@ -50,18 +79,27 @@ namespace Xadrez_Console
         //método que diferencia a cor das pecas
         public static void ImprimirCorPeca(Peca peca)
         {
-            //se a cor da peca for branco, imprime normalmente
-            if (peca.CorPeca == CorPeca.Branco)
+            if (peca == null)
             {
-                Console.Write(peca);
+                Console.Write("- ");
             }
-            //se nao for, imprime em amarelo
             else
             {
-                ConsoleColor aux = Console.ForegroundColor;
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(peca);
-                Console.ForegroundColor = aux;
+                //se a cor da peca for branco, imprime normalmente
+                if (peca.CorPeca == CorPeca.Branco)
+                {
+                    Console.Write(peca);
+                }
+                //se nao for, imprime em amarelo
+                else
+                {
+                    ConsoleColor aux = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(peca);
+                    Console.ForegroundColor = aux;
+                }
+
+                Console.Write(" ");
             }
         }
     }

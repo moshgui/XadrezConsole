@@ -8,7 +8,7 @@ namespace Xadrez_Console.tabuleiro
 {
     class TabuleiroException : Exception
     {
-        //exceção personalizada que retorna uma mensagem
+        //exceção personalizada que retorna uma mensagem personalizada
         public TabuleiroException (string msg) : base(msg)
         {
 
