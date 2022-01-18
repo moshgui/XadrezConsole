@@ -18,6 +18,11 @@ namespace Xadrez_Console
             Console.WriteLine();
             Console.WriteLine($"Turno: {partida.Turno}");
             Console.WriteLine($"Aguardando jogada do {partida.JogadorAtual}");
+
+            if (partida.Xeque)
+            {
+                Console.WriteLine("Xeque!");
+            }            
         }
         
         //método estático para imprimir na tela as informações referentes as pecas capturadas

@@ -37,6 +37,11 @@ namespace Xadrez_Console.tabuleiro
             QtdeMovimentos++;
         }
 
+        public void Decrementar()
+        {
+            QtdeMovimentos--;
+        }
+
         //for varre toda a matriz do metodo MovimentosPossives()
         //caso exista alguma posicao que esteja vaga, retorna true
         //caso contrato, false
