@@ -17,14 +17,22 @@ namespace Xadrez_Console
             ImprimirPecaCapturada(partida);
             Console.WriteLine();
             Console.WriteLine($"Turno: {partida.Turno}");
-            Console.WriteLine($"Aguardando jogada do {partida.JogadorAtual}");
 
-            if (partida.Xeque)
+            if (!partida.Terminada)
             {
-                Console.WriteLine("Xeque!");
-            }            
+                Console.WriteLine($"Aguardando jogada do {partida.JogadorAtual}");
+                if (partida.Xeque)
+                {
+                    Console.WriteLine("Xeque!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Xeque Mate!");
+                Console.WriteLine($"Vencedor da partida: {partida.JogadorAtual}");
+            }
         }
-        
+
         //método estático para imprimir na tela as informações referentes as pecas capturadas
         //chama a funcao ImprimirConjunto() para mostrar as pecas capturadas
         public static void ImprimirPecaCapturada(PartidaXadrez partida)
@@ -46,7 +54,7 @@ namespace Xadrez_Console
             }
             Console.Write("]");
         }
-        
+
         //classe que tem como funcão apenas mostrar o tabuleiro na tela
         //tabuleiro se trata de uma matriz definida pela classe PartidaXadrez.cs
         public static void ImprimirTabuleiro(Tabuleiro tab)
@@ -99,7 +107,7 @@ namespace Xadrez_Console
             }
             //todas as colunas de uma partida de xadrez
             Console.WriteLine("  A B C D E F G H");
-            Console.BackgroundColor = fundoOriginal;    
+            Console.BackgroundColor = fundoOriginal;
         }
 
         //método que pergunta pra qual posicao deseja movimentar uma peca

@@ -83,8 +83,15 @@ namespace Xadrez_Console.Xadrez
                 Xeque = false;
             }
 
-            Turno++;
-            MudaJogador();
+            if (TesteXeque(Adversaria(JogadorAtual)))
+            {
+                Terminada = true;
+            }
+            else
+            {
+                Turno++;
+                MudaJogador();
+            }
         }
 
 
@@ -208,7 +215,38 @@ namespace Xadrez_Console.Xadrez
             return false;
         }
 
+        public bool TesteXeque(CorPeca cor)
+        {
+            if (!EstaEmXeque(cor))
+            {
+                return false;
+            }
 
+            foreach (Peca x in PecasEmJogo(cor))
+            {
+                bool[,] mat = x.MovimentosPossíveis();
+                for (int i = 0; i < tab.Linhas; i++)
+                {
+                    for (int j = 0; j < tab.Colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = x.Posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = ExecutaMovimento(origem, destino);
+                            bool testeXeque = EstaEmXeque(cor);
+                            DesfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
 
         //método que ira converter a posicao da matriz para uma posicao valida do tabuleiro
         //ao iniciar uma peca, ela é adicionada ao conjuntos 'pecas'
