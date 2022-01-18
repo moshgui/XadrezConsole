@@ -36,6 +36,31 @@ namespace Xadrez_Console.tabuleiro
         {
             QtdeMovimentos++;
         }
+
+        //for varre toda a matriz do metodo MovimentosPossives()
+        //caso exista alguma posicao que esteja vaga, retorna true
+        //caso contrato, false
+        public bool ExisteMovimentosPossiveis()
+        {
+            bool[,] mat = MovimentosPossíveis();
+            for (int i = 0; i < Tabuleiro.Linhas; i++)
+            {
+                for (int j = 0; j < Tabuleiro.Colunas; j++)
+                {
+                    if (mat[i, j] == true)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public bool PodeMoverPara(Posicao pos)
+        {
+            return MovimentosPossíveis()[pos.Linha, pos.Coluna];
+        }
         
         //método abstrato pois não existem movimentos definidos para peca que nao sabemos qual é
         //método genérico

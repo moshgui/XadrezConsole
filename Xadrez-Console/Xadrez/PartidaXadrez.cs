@@ -10,8 +10,8 @@ namespace Xadrez_Console.Xadrez
     class PartidaXadrez
     {
         public Tabuleiro tab { get; private set; }
-        private int Turno;
-        private CorPeca JogadorAtual;
+        public int Turno { get; private set; }  
+        public CorPeca JogadorAtual { get; private set; }   
         public bool Terminada { get; private set; }
 
         public PartidaXadrez()
@@ -33,6 +33,56 @@ namespace Xadrez_Console.Xadrez
             p.Movimento();
             Peca pecaCapturada = tab.RemoverPeca(destino);
             tab.ColocarPeca(p, destino);
+        }
+
+        //passagem de turno
+        //incrementa mais um no turno
+        //chama a funcao MudaJogador()
+        public void RealizaJogada(Posicao origem, Posicao destino)
+        {
+            ExecutaMovimento(origem, destino);
+            Turno++;
+            MudaJogador();
+        }
+
+        
+        //método que verifa se a posicao de origem existe
+        //não pode ser uma posicao que está sem peca
+        //não pode ser uma peca que nao seja sua
+        //cada tipo de if tem sua propria excecao
+        public void ValidarOrigem(Posicao pos)
+        {
+            if (tab.peca(pos) == null)
+            {
+                throw new TabuleiroException("Não existe peça na posição de origem escolhida!");
+            }
+
+            if (JogadorAtual != tab.peca(pos).CorPeca)
+            {
+                throw new TabuleiroException("Escolha uma peça sua!");
+            }
+
+            if (!tab.peca(pos).ExisteMovimentosPossiveis())
+            {
+                throw new TabuleiroException("Não existe movimentos possíveis para a peça escolhida!");
+            }
+        }
+
+        public void ValidarDestino(Posicao origem, Posicao destino)
+        {
+            if (!tab.peca(origem).PodeMoverPara(destino))
+            {
+                throw new TabuleiroException("Posição de destino inválida!");
+            }
+        }
+
+        //A cada jogada, verifica se o a cor que vai jogar é diferente da cor que jogou por ultimo
+        private void MudaJogador()
+        {
+            if (JogadorAtual == CorPeca.Branco)
+            {
+                JogadorAtual = CorPeca.Preta;
+            }
         }
 
         //método que irá iniciar as pecas do xadrez em suas devidas posicoes iniciais
