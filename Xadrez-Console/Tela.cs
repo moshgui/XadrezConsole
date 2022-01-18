@@ -10,6 +10,38 @@ namespace Xadrez_Console
 {
     class Tela
     {
+        public static void ImprimirPartida(PartidaXadrez partida)
+        {
+            ImprimirTabuleiro(partida.tab);
+            Console.WriteLine();
+            ImprimirPecaCapturada(partida);
+            Console.WriteLine();
+            Console.WriteLine($"Turno: {partida.Turno}");
+            Console.WriteLine($"Aguardando jogada do {partida.JogadorAtual}");
+        }
+        
+        //método estático para imprimir na tela as informações referentes as pecas capturadas
+        //chama a funcao ImprimirConjunto() para mostrar as pecas capturadas
+        public static void ImprimirPecaCapturada(PartidaXadrez partida)
+        {
+            Console.WriteLine("Peças capturadas");
+            Console.Write($"Brancas: ");
+            ImprimirConjunto(partida.PecasCapturadas(CorPeca.Branco));
+            Console.Write($"Pretas: ");
+            ImprimirConjunto(partida.PecasCapturadas(CorPeca.Preta));
+        }
+
+        //método estático para mostrar quantas pecas já foram capturadas
+        public static void ImprimirConjunto(HashSet<Peca> conjunto)
+        {
+            Console.Write("[");
+            foreach (Peca x in conjunto)
+            {
+                Console.Write($"{x} ");
+            }
+            Console.Write("]");
+        }
+        
         //classe que tem como funcão apenas mostrar o tabuleiro na tela
         //tabuleiro se trata de uma matriz definida pela classe PartidaXadrez.cs
         public static void ImprimirTabuleiro(Tabuleiro tab)
