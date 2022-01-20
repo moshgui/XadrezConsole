@@ -47,7 +47,7 @@ namespace Xadrez_Console.tabuleiro
         //caso contrato, false
         public bool ExisteMovimentosPossiveis()
         {
-            bool[,] mat = MovimentosPossíveis();
+            bool[,] mat = MovimentosPossiveis();
             for (int i = 0; i < Tabuleiro.Linhas; i++)
             {
                 for (int j = 0; j < Tabuleiro.Colunas; j++)
@@ -64,12 +64,12 @@ namespace Xadrez_Console.tabuleiro
 
         public bool PodeMoverPara(Posicao pos)
         {
-            return MovimentosPossíveis()[pos.Linha, pos.Coluna];
+            return MovimentosPossiveis()[pos.Linha, pos.Coluna];
         }
         
         //método abstrato pois não existem movimentos definidos para peca que nao sabemos qual é
         //método genérico
         //deve ser implementado nas classes de pecas
-        public abstract bool [,] MovimentosPossíveis();
+        public abstract bool [,] MovimentosPossiveis();
     }
 }

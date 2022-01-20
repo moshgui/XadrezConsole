@@ -205,7 +205,7 @@ namespace Xadrez_Console.Xadrez
 
             foreach (Peca x in PecasEmJogo(Adversaria(cor)))
             {
-                bool[,] mat = x.MovimentosPossíveis();
+                bool[,] mat = x.MovimentosPossiveis();
                 if (mat[R.Posicao.Linha, R.Posicao.Coluna])
                 {
                     return true;
@@ -224,7 +224,7 @@ namespace Xadrez_Console.Xadrez
 
             foreach (Peca x in PecasEmJogo(cor))
             {
-                bool[,] mat = x.MovimentosPossíveis();
+                bool[,] mat = x.MovimentosPossiveis();
                 for (int i = 0; i < tab.Linhas; i++)
                 {
                     for (int j = 0; j < tab.Colunas; j++)
@@ -262,21 +262,39 @@ namespace Xadrez_Console.Xadrez
         //mais legivel
         private void IniciarPecas()
         {
-            ColocarNovaPeca('C', 1, new Torre(CorPeca.Branco, tab));
+            ColocarNovaPeca('A', 1, new Torre(CorPeca.Branco, tab));
+            ColocarNovaPeca('B', 1, new Cavalo(CorPeca.Branco, tab));
+            ColocarNovaPeca('C', 1, new Bispo(CorPeca.Branco, tab));
+            ColocarNovaPeca('D', 1, new Dama(CorPeca.Branco, tab));
+            ColocarNovaPeca('E', 1, new Rei(CorPeca.Branco, tab));
+            ColocarNovaPeca('F', 1, new Bispo(CorPeca.Branco, tab));
+            ColocarNovaPeca('G', 1, new Cavalo(CorPeca.Branco, tab));
+            ColocarNovaPeca('H', 1, new Torre(CorPeca.Branco, tab));
+            ColocarNovaPeca('A', 2, new Peao(CorPeca.Branco, tab));
+            ColocarNovaPeca('B', 2, new Peao(CorPeca.Branco, tab));
+            ColocarNovaPeca('C', 2, new Peao(CorPeca.Branco, tab));
+            ColocarNovaPeca('D', 2, new Peao(CorPeca.Branco, tab));
+            ColocarNovaPeca('E', 2, new Peao(CorPeca.Branco, tab));
+            ColocarNovaPeca('F', 2, new Peao(CorPeca.Branco, tab));
+            ColocarNovaPeca('G', 2, new Peao(CorPeca.Branco, tab));
+            ColocarNovaPeca('H', 2, new Peao(CorPeca.Branco, tab));
 
-
-            ColocarNovaPeca('C', 2, new Torre(CorPeca.Branco, tab));
-            ColocarNovaPeca('D', 2, new Torre(CorPeca.Branco, tab));
-            ColocarNovaPeca('E', 2, new Torre(CorPeca.Branco, tab));
-            ColocarNovaPeca('E', 1, new Torre(CorPeca.Branco, tab));
-            ColocarNovaPeca('D', 1, new Rei(CorPeca.Branco, tab));
-
-            ColocarNovaPeca('C', 7, new Torre(CorPeca.Preta, tab));
-            ColocarNovaPeca('C', 8, new Torre(CorPeca.Preta, tab));
-            ColocarNovaPeca('D', 7, new Torre(CorPeca.Preta, tab));
-            ColocarNovaPeca('E', 7, new Torre(CorPeca.Preta, tab));
-            ColocarNovaPeca('E', 8, new Torre(CorPeca.Preta, tab));
-            ColocarNovaPeca('D', 8, new Rei(CorPeca.Preta, tab));
+            ColocarNovaPeca('A', 7, new Peao(CorPeca.Preta, tab));
+            ColocarNovaPeca('B', 7, new Peao(CorPeca.Preta, tab));
+            ColocarNovaPeca('C', 7, new Peao(CorPeca.Preta, tab));
+            ColocarNovaPeca('D', 7, new Peao(CorPeca.Preta, tab));
+            ColocarNovaPeca('E', 7, new Peao(CorPeca.Preta, tab));
+            ColocarNovaPeca('F', 7, new Peao(CorPeca.Preta, tab));
+            ColocarNovaPeca('G', 7, new Peao(CorPeca.Preta, tab));
+            ColocarNovaPeca('H', 7, new Peao(CorPeca.Preta, tab));
+            ColocarNovaPeca('A', 8, new Torre(CorPeca.Preta, tab));
+            ColocarNovaPeca('B', 8, new Cavalo(CorPeca.Preta, tab));
+            ColocarNovaPeca('C', 8, new Bispo(CorPeca.Preta, tab));
+            ColocarNovaPeca('D', 8, new Dama(CorPeca.Preta, tab));
+            ColocarNovaPeca('E', 8, new Rei(CorPeca.Preta, tab));
+            ColocarNovaPeca('F', 8, new Bispo(CorPeca.Preta, tab));
+            ColocarNovaPeca('G', 8, new Cavalo(CorPeca.Preta, tab));
+            ColocarNovaPeca('H', 8, new Torre(CorPeca.Preta, tab));
         }
     }
 }
