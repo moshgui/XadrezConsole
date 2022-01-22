@@ -18,6 +18,7 @@ namespace Xadrez_Console.Xadrez
         public bool Xeque { get; private set; }
         public Peca vulneravelEnPassant { get; private set; }
 
+        //construtor da partida de xadrez
         public PartidaXadrez()
         {
             tab = new Tabuleiro(8, 8);
@@ -90,6 +91,8 @@ namespace Xadrez_Console.Xadrez
             return pecaCapturada;
         }
 
+        //metodo que desfaz o movimento das pecas
+        //normalmente é acionado quando há um erro
         public void DesfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
         {
             Peca p = tab.RemoverPeca(destino);
@@ -160,6 +163,7 @@ namespace Xadrez_Console.Xadrez
 
             Peca p = tab.peca(destino);
             //jogada especial promocao
+            //caso o peao chegue a ultima linha do tabuleiro se torna dama
             if (p is Peao)
             {
                 if ((p.CorPeca == CorPeca.Branco && destino.Linha == 0) || (p.CorPeca == CorPeca.Preta && destino.Linha == 7))
@@ -172,7 +176,7 @@ namespace Xadrez_Console.Xadrez
                 }
             }
 
-
+            //testando se está em xeque
             if (EstaEmXeque(Adversaria(JogadorAtual)))
             {
                 Xeque = true;
@@ -195,7 +199,6 @@ namespace Xadrez_Console.Xadrez
            
 
             //jogada especial en passant
-
             if (p is Peao && (destino.Linha == origem.Linha - 2 || destino.Linha == origem.Linha + 2))
             {
                 vulneravelEnPassant = p;

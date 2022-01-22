@@ -37,6 +37,7 @@ namespace Xadrez_Console.tabuleiro
             QtdeMovimentos++;
         }
 
+        //metodo contrario ao Movimento()
         public void Decrementar()
         {
             QtdeMovimentos--;
