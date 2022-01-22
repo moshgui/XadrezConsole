@@ -43,6 +43,7 @@ namespace Xadrez_Console.Xadrez
                 pos.DefinirValores(Posicao.Linha, Posicao.Coluna - 1);
             }
 
+            //direita
             pos.DefinirValores(Posicao.Linha, Posicao.Coluna + 1);
             while (Tabuleiro.PosicaoValida(pos) && PodeMover(pos))
             {
